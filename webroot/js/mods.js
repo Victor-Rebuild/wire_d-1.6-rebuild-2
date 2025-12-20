@@ -34,6 +34,7 @@ async function UpdateAllMods() {
     getTimezone()
     getLocation()
     getTempUnits()
+    getName()
 }
 
 async function FreqChange_Submit() {
@@ -215,6 +216,35 @@ async function getTempUnits() {
         }
     } catch (e) {
         console.log(`network error: ${e.message}`);
+    }
+}
+
+async function getName() {
+    try {
+        const res = await fetch(`/api/mods/JdocSettings/getName`);
+        if (!res.ok) {
+            const e = await res.json();
+            console.log(`${e.status}: ${e.message}`);
+        }
+    } catch (e) {
+        console.log(`network error: ${e.message}`);
+    }
+}
+
+async function setName() {
+    const v = document.getElementById('name').value;
+    setJdocStatus("Setting name...")
+    try {
+        const res = await fetch(`/api/mods/JdocSettings/setName?name=${v}`);
+        if (!res.ok) {
+            const e = await res.json();
+            setJdocStatus(`${e.status}: ${e.message}`);
+        } else {
+            getName()
+            setJdocStatus('Successfully set name.');
+        }
+    } catch (e) {
+        setJdocStatus(`network error: ${e.message}`);
     }
 }
 

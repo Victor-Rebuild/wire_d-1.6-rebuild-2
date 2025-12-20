@@ -8,6 +8,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"os"
 
 	"github.com/digital-dream-labs/vector-go-sdk/pkg/vectorpb"
 	"github.com/os-vector/wired/vars"
@@ -64,6 +65,13 @@ func (m *JdocSettings) HTTP(w http.ResponseWriter, r *http.Request) {
 			vars.HTTPError(w, r, err.Error())
 			return
 		}
+	} else if r.URL.Path == "/api/mods/JdocSettings/setName" {
+		name := r.FormValue("name")
+		err := setName(name)
+		if err != nil {
+			vars.HTTPError(w, r, err.Error())
+			return
+		}
 	} else if r.URL.Path == "/api/mods/JdocSettings/getLocation" {
 		location, err := getLocation()
 		if err != nil {
@@ -92,6 +100,14 @@ func (m *JdocSettings) HTTP(w http.ResponseWriter, r *http.Request) {
 		}
 		w.Write([]byte(ret))
 		return
+	} else if r.URL.Path == "/api/mods/JdocSettings/getName" {
+		name, err := getName()
+		if err != nil {
+			vars.HTTPError(w, r, err.Error())
+			return
+		}
+		w.Write([]byte(name))
+		return
 	} else {
 		vars.HTTPError(w, r, "404 not found")
 	}
@@ -115,6 +131,28 @@ func setTimezone(timezone string) error {
 func setFahrenheit(isF bool) error {
 	setSettingSDKintbool("temp_is_fahrenheit", fmt.Sprint(isF))
 	return nil
+}
+
+func setName(name string) error {
+	if name == "" {
+		return errors.New("empty name")
+	}
+	os.WriteFile("/data/data/customBotName", []byte(name), 0777)
+	req, _ := http.NewRequest("POST", "http://localhost:8888/triggerIntent?type=user&intent=name_victor_setname", nil)
+	client := &http.Client{}
+	_, err := client.Do(req)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func getName() (string, error) {
+	data, err := os.ReadFile("/data/data/customBotName")
+	if err != nil {
+		return "", err
+	}
+	return string(data), nil
 }
 
 func getLocation() (string, error) {
