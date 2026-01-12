@@ -1,5 +1,5 @@
 body {
-    background-color: #1e1e1e;
+    background-color: #000;
     color: #f0f0f0;
     font-family: Arial, sans-serif;
     display: flex;
@@ -12,11 +12,10 @@ body {
 .tabs {
     display: flex;
     width: 80%;
-    max-width: 700px;
+    max-width: 900px;
+    border-radius: 7px;
     margin: 20px auto 5px;
-    background: #333;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-    border-radius: 10px 10px 10px 10px;
+    background: #1e1e1e;
     overflow: hidden;
 }
 
@@ -24,7 +23,7 @@ body {
     flex: 1;
     padding: 10px;
     border: none;
-    background: #333;
+    background: #1e1e1e;
     color: #f0f0f0;
     font-size: 16px;
     cursor: pointer;
@@ -40,13 +39,15 @@ header,
 .container {
     text-align: center;
     padding: 10px;
-    width: 80%;
-    max-width: 600px;
-    background-color: #333;
-    border-radius: 10px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
     margin-bottom: 10px;
     margin-top: 20px;
+}
+
+.container {
+    width: 80%;
+    border-radius: 7px;
+    max-width: 600px;
+    background-color: #1e1e1e;
 }
 
 header h1 {
@@ -69,6 +70,15 @@ form {
 input[type="radio"],
 input[type="checkbox"] {
     display: none;
+}
+
+.smallhr {
+    width: 200px;
+    height: 2px;
+    border: none;
+    background-color: #444;
+    color: #444;
+
 }
 
 .buttonlabel {

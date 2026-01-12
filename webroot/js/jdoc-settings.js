@@ -98,6 +98,3 @@ async function getTempUnits() {
         console.log(`network error: ${e.message}`);
     }
 }
-
-
-UpdateAllMods();

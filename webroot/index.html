@@ -25,6 +25,7 @@
     <div id="home" class="container tab-content active">
         <h2><code>wired</code></h2>
         <p>This is where extra configuration options exist.</p>
+        <p>Click the tabs to navigate the options.</p>
     </div>
 
     <div id="mainmods" class="container mod-section tab-content">
@@ -46,6 +47,7 @@
     <div id="cww" class="container mod-section tab-content">
         <h2>Custom Wake Word</h2>
         <p>At least two syllables, at least 5 letters.</p>
+        <hr class="smallhr">
         <div id="wakeWordStatus"></div>
         <div class="button-container">
             <label id="keywordLabel" for="keyword">Desired wake word:</label>
@@ -78,11 +80,12 @@
 
     <div id="jdocsettings" class="container mod-section tab-content">
         <h2>User Preferences</h2>
+        <div id="jdocStatus"></div>
         <div class="button-container">
-            <div id="jdocStatus"></div>
             <label id="locationLabel" for="location">Location:</label>
             <input type="text" placeholder="San Francisco, California" id="location">
             <button id="locationSet" onclick="setLocation()">Set Location</button>
+            <hr class="smallhr">
             <label id="timezoneLabel" for="timezone">Time Zone:</label>
             <select name="timezone" id="timezone">
                 <option value="Pacific/Honolulu">Pacific/Honolulu</option>
@@ -129,6 +132,7 @@
                 <option value="Australia/Auckland">Australia/Auckland</option>
             </select>
             <button id="timezoneSet" onclick="setTimezone()">Set Timezone</button>
+            <hr class="smallhr">
             <label id="tempLabel" for="tUnits">Temp Units:</label>
             <select name="tUnits" id="tUnits">
                 <option value="f">Fahrenheit</option>
@@ -141,12 +145,9 @@
     <div id="faces" class="container mod-section tab-content">
         <h2>Face Manager</h2>
         <p>Manage enrolled faces: list, rename, delete, or enroll a new one.</p>
+        <hr class="smallhr">
 
         <div id="facesStatus" class="faces-status" style="display:none;"></div>
-
-        <div class="button-container" style="gap: 6px;">
-            <button type="button" id="facesRefreshBtn" onclick="facesRefresh()">Refresh</button>
-        </div>
 
         <div style="margin-top: 10px;">
             <h3 style="margin: 8px 0; color: #a855f7;">Enroll new face</h3>
@@ -156,9 +157,14 @@
                 <button type="button" onclick="faceTrain()">Start Enroll</button>
             </div>
         </div>
+        <hr class="smallhr">
+
 
         <div style="margin-top: 12px;">
             <h3 style="margin: 8px 0; color: #a855f7;">Currently enrolled faces:</h3>
+            <div class="button-container" style="gap: 6px;">
+                <button type="button" id="facesRefreshBtn" onclick="facesRefresh()">Refresh</button>
+            </div>
             <div id="facesList" class="faces-list"></div>
         </div>
     </div>

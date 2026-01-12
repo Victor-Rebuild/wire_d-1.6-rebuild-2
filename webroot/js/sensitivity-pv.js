@@ -28,6 +28,3 @@ async function RestartVic() {
     document.querySelectorAll('.tab-content').forEach(c => c.style.display = '');
     if (activePanel) activePanel.classList.add('active');
 }
-
-
-UpdateAllMods();
