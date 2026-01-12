@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"errors"
 	"net/http"
-	"os"
 	"strconv"
 	"strings"
 
@@ -16,8 +15,8 @@ type Faces struct {
 	vars.Modification
 }
 
-func NewFaces() *AutoUpdate {
-	return &AutoUpdate{}
+func NewFaces() *Faces {
+	return &Faces{}
 }
 
 func (modu *Faces) Name() string {
@@ -37,7 +36,7 @@ func (m *Faces) HTTP(w http.ResponseWriter, r *http.Request) {
 	if !strings.HasPrefix(r.URL.Path, "/api/mods/"+m.Name()) {
 		return
 	}
-	switch strings.TrimPrefix(r.URL.Path, "/api/mods/"+m.Name()) {
+	switch strings.TrimPrefix(r.URL.Path, "/api/mods/"+m.Name()+"/") {
 	case "getFaces":
 		list, err := getFaces()
 		if err != nil {
@@ -62,16 +61,48 @@ func (m *Faces) HTTP(w http.ResponseWriter, r *http.Request) {
 			vars.HTTPError(w, r, "id contains invalid characters")
 			return
 		}
-		deleteFace(int32(i))
-	case "/api/mods/AutoUpdate/setInhibited":
-		os.WriteFile("/data/data/user-do-not-auto-update", []byte("true"), 0777)
-		vars.HTTPSuccess(w, r)
-	case "/api/mods/AutoUpdate/setAllowed":
-		os.Remove("/data/data/user-do-not-auto-update")
-		vars.HTTPSuccess(w, r)
+		err = deleteFace(int32(i))
+		if err != nil {
+			vars.HTTPError(w, r, err.Error())
+			return
+		}
+	case "renameFace":
+		id := r.FormValue("id")
+		newName := r.FormValue("name")
+		if id == "" {
+			vars.HTTPError(w, r, "empty id")
+			return
+		}
+		if newName == "" {
+			vars.HTTPError(w, r, "empty name")
+			return
+		}
+		i, err := strconv.Atoi(id)
+		if err != nil {
+			vars.HTTPError(w, r, "id contains invalid characters")
+			return
+		}
+		err = renameFace(int32(i), newName)
+		if err != nil {
+			vars.HTTPError(w, r, err.Error())
+			return
+		}
+	case "trainFace":
+		name := r.FormValue("name")
+		if name == "" {
+			vars.HTTPError(w, r, "empty name")
+			return
+		}
+		err := trainFace(name)
+		if err != nil {
+			vars.HTTPError(w, r, "empty name")
+			return
+		}
 	default:
 		vars.HTTPError(w, r, "404 not found")
+		return
 	}
+	vars.HTTPSuccess(w, r)
 }
 
 type EnrolledFace struct {
@@ -124,7 +155,7 @@ func renameFace(id int32, newName string) error {
 			matched = true
 		}
 	}
-	if matched {
+	if !matched {
 		// not doing this with `oldName == ""` because it is possible for an empty name to exist
 		return errors.New("face id does not exist")
 	}
@@ -159,8 +190,6 @@ func trainFace(name string) error {
 		Name:        name,
 		SaveToRobot: true,
 		SayName:     true,
-		// what
-		UseMusic: true,
 	})
 	return err
 }

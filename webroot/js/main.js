@@ -35,4 +35,7 @@ async function UpdateAllMods() {
     getLocation()
     getTempUnits()
     getName()
+    facesRefresh()
 }
+
+UpdateAllMods();
