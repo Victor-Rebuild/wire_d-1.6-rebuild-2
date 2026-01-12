@@ -33,5 +33,3 @@ async function autoUpdateAllow() {
     await fetch('/api/mods/AutoUpdate/setAllowed');
     checkAutoUpdateStatus();
 }
-
-UpdateAllMods();

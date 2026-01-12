@@ -16,5 +16,3 @@ async function FreqChange_Submit() {
         show('mods');
     }
 }
-
-UpdateAllMods();
