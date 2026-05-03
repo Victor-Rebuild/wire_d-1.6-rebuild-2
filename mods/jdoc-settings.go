@@ -153,7 +153,7 @@ func setName(name string) error {
 }
 
 func getName() (string, error) {
-	data, err := os.ReadFile("/data/data/customBotName")
+	data, err := os.ReadFile("/data/data/rebuild/customBotName")
 	if err != nil {
 		return "", err
 	}
