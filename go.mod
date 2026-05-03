@@ -1,4 +1,4 @@
-module github.com/os-vector/wired
+module github.com/Victor-Rebuild/wire_d-1.6-rebuild-2
 
 go 1.19
 

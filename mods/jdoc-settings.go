@@ -12,7 +12,7 @@ import (
 	"strings"
 
 	"github.com/digital-dream-labs/vector-go-sdk/pkg/vectorpb"
-	"github.com/os-vector/wired/vars"
+	"github.com/Victor-Rebuild/wire_d-1.6-rebuild-2/vars"
 )
 
 var ctx context.Context

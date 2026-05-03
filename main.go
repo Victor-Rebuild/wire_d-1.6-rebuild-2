@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/os-vector/wired/mods"
-	"github.com/os-vector/wired/vars"
+	"github.com/Victor-Rebuild/wire_d-1.6-rebuild-2/mods"
+	"github.com/Victor-Rebuild/wire_d-1.6-rebuild-2/vars"
 )
 
 var EnabledMods []vars.Modification = []vars.Modification{
@@ -15,6 +15,7 @@ var EnabledMods []vars.Modification = []vars.Modification{
 	mods.NewSensitivityPV(),
 	mods.NewJdocSettings(),
 	mods.NewFaces(),
+	mods.NewEyeColor(),
 }
 
 func main() {
