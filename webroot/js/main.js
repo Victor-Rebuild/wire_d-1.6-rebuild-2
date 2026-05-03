@@ -30,6 +30,7 @@ async function UpdateAllMods() {
     document.getElementsByName('frequency')
         .forEach(rb => { if (rb.value == data) rb.checked = true; });
     checkAutoUpdateStatus();
+    checkBackpackLightsStatus();
     setSensitivity();
     getTimezone()
     getLocation()

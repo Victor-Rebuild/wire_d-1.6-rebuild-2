@@ -17,6 +17,7 @@
         <button data-target="#mainmods">Performance Profiles</button>
         <button data-target="#cww">Custom Wake Word</button>
         <button data-target="#aud">Auto Updates</button>
+        <button data-target="#bkpl">Backpack lights</button>
         <button data-target="#sensitivity">Wakeword Sensitivity</button>
         <button data-target="#jdocsettings">User Preferences</button>
         <button data-target="#faces">Face Manager</button>
@@ -63,6 +64,15 @@
         <div class="button-container">
             <button id="autoUpdateInhibit" onclick="autoUpdateInhibit()">Disable</button>
             <button id="autoUpdateAllow" onclick="autoUpdateAllow()">Enable</button>
+        </div>
+    </div>
+
+    <div id="bkpl" class="container mod-section tab-content">
+        <h2>Backpack Lights</h2>
+        <div id="BackpackLightsStatus"></div>
+        <div class="button-container">
+            <button id="BackpackLightsInhibit" onclick="BackpackLightsInhibit()">Disable</button>
+            <button id="BackpackLightsAllow" onclick="BackpackLightsAllow()">Enable</button>
         </div>
     </div>
 
