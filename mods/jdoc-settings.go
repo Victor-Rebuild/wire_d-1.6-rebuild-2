@@ -11,8 +11,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/digital-dream-labs/vector-go-sdk/pkg/vectorpb"
 	"github.com/Victor-Rebuild/wire_d-1.6-rebuild-2/vars"
+	"github.com/digital-dream-labs/vector-go-sdk/pkg/vectorpb"
 )
 
 var ctx context.Context
@@ -142,7 +142,7 @@ func setName(name string) error {
 	if name == "" {
 		return errors.New("empty name")
 	}
-	os.WriteFile("/data/data/customBotName", []byte(name), 0777)
+	os.WriteFile("/data/data/rebuild/customBotName", []byte(name), 0777)
 	req, _ := http.NewRequest("POST", "http://localhost:8888/triggerIntent?type=user&intent=name_victor_setname", nil)
 	client := &http.Client{}
 	_, err := client.Do(req)
