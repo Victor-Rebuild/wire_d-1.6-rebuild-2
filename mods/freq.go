@@ -78,20 +78,24 @@ func DoFreqChange(freq int, freqStr string) {
 	}
 	var cpufreq string
 	var ramfreq string
+	var rammainlinefreq string
 	var gov string
 	switch {
 	case freq == 0:
 		cpufreq = "533333"
 		ramfreq = "400000"
 		gov = "interactive"
+		rammainlinefreq = "200000"
 	case freq == 1:
 		cpufreq = "729600"
 		ramfreq = "400000"
 		gov = "interactive"
+		rammainlinefreq = "200000"
 	case freq == 2:
 		cpufreq = "1267200"
 		ramfreq = "800000"
 		gov = "performance"
+		rammainlinefreq = "400000"
 	}
 	fmt.Println("FreqChange done!: " + cpufreq + " " + ramfreq + " " + gov)
 	RunCmd("echo " + cpufreq + " > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq")
@@ -103,6 +107,7 @@ func DoFreqChange(freq int, freqStr string) {
 	RunCmd("echo active clk2 0 1 max " + ramfreq + " > /sys/kernel/debug/rpm_send_msg/message")
 	RunCmd("echo " + gov + " > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor")
 	RunCmd("echo 1 > /sys/kernel/debug/msm-bus-dbg/shell-client/update_request")
+	RunCmd("echo " + rammainlinefreq + " > /sys/bus/platform/devices/400000.interconnect/bus_scaling/scaling_max_rate_khz")
 }
 
 func RunCmd(cmd string) ([]byte, error) {
