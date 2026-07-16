@@ -34,6 +34,7 @@ async function UpdateAllMods() {
     getTimezone()
     getLocation()
     getTempUnits()
+    getName()
     facesRefresh()
 }
 

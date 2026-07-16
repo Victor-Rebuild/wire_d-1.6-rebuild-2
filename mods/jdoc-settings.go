@@ -77,6 +77,13 @@ func (m *JdocSettings) HTTP(w http.ResponseWriter, r *http.Request) {
 			vars.HTTPError(w, r, err.Error())
 			return
 		}
+	case "setPronouns":
+		pronouns := r.FormValue("pronouns")
+		err := setPronouns(pronouns)
+		if err != nil {
+			vars.HTTPError(w, r, err.Error())
+			return
+		}
 	case "getLocation":
 		location, err := getLocation()
 		if err != nil {
@@ -112,6 +119,14 @@ func (m *JdocSettings) HTTP(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		w.Write([]byte(name))
+		return
+	case "getPronouns":
+		pronouns, err := getPronouns()
+		if err != nil {
+			vars.HTTPError(w, r, err.Error())
+			return
+		}
+		w.Write([]byte(pronouns))
 		return
 	default:
 		vars.HTTPError(w, r, "404 not found")
@@ -152,7 +167,29 @@ func setName(name string) error {
 	return nil
 }
 
+func setPronouns(pronouns string) error {
+	if pronouns == "" {
+		return errors.New("empty pronouns")
+	}
+	os.WriteFile("/data/data/rebuild/customBotPronouns", []byte(pronouns), 0777)
+	req, _ := http.NewRequest("POST", "http://localhost:8888/triggerIntent?type=user&intent=name_victor_setpronouns", nil)
+	client := &http.Client{}
+	_, err := client.Do(req)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func getName() (string, error) {
+	data, err := os.ReadFile("/data/data/rebuild/customBotName")
+	if err != nil {
+		return "", err
+	}
+	return string(data), nil
+}
+
+func getPronouns() (string, error) {
 	data, err := os.ReadFile("/data/data/rebuild/customBotName")
 	if err != nil {
 		return "", err

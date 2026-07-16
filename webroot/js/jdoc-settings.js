@@ -128,5 +128,52 @@ async function setName() {
     }
 }
 
+async function setPronouns() {
+    const v = document.getElementById('pronouns').value;
+    setJdocStatus("Setting pronouns...")
+    try {
+        const res = await fetch(`/api/mods/JdocSettings/setPronouns?pronouns=${v}`);
+        if (!res.ok) {
+            const e = await res.json();
+            setJdocStatus(`${e.status}: ${e.message}`);
+        } else {
+            setJdocStatus('Successfully set pronouns.');
+        }
+    } catch (e) {
+        setJdocStatus(`network error: ${e.message}`);
+    }
+}
+
+async function setPronounsDef() {
+    const v = document.getElementById('pronouns').value;
+    setJdocStatus("Setting pronouns...")
+    try {
+        const res = await fetch(`/api/mods/JdocSettings/setPronouns?pronouns=He/Him`);
+        if (!res.ok) {
+            const e = await res.json();
+            setJdocStatus(`${e.status}: ${e.message}`);
+        } else {
+            setJdocStatus('Successfully set pronouns.');
+        }
+    } catch (e) {
+        setJdocStatus(`network error: ${e.message}`);
+    }
+}
+
+async function setPronounsAll() {
+    const v = document.getElementById('pronouns').value;
+    setJdocStatus("Setting pronouns...")
+    try {
+        const res = await fetch(`/api/mods/JdocSettings/setPronouns?pronouns=Any`);
+        if (!res.ok) {
+            const e = await res.json();
+            setJdocStatus(`${e.status}: ${e.message}`);
+        } else {
+            setJdocStatus('Successfully set pronouns.');
+        }
+    } catch (e) {
+        setJdocStatus(`network error: ${e.message}`);
+    }
+}
 
 UpdateAllMods();

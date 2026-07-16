@@ -20,6 +20,7 @@
         <button data-target="#sensitivity">Wakeword Sensitivity</button>
         <button data-target="#jdocsettings">User Preferences</button>
         <button data-target="#faces">Face Manager</button>
+        <button data-target="#identification">Bot Personalization</button>
     </div>
 
     <div id="home" class="container tab-content active">
@@ -139,10 +140,6 @@
                 <option value="c">Celsius</option>
             </select>
             <button id="timezoneSet" onclick="setTempUnits()">Set Temp Units</button>
-            <label id="nameLabel" for="name">Robot Name:</label>
-            <input type="text" placeholder="Vector" id="name">
-            <button id="nameSet" onclick="setName()">Set Bot Name</button>
-
             <hr class="smallhr">
             <h3 style="margin: 8px 0; color: #a855f7;">Custom Eye Color</h3>
             <p style="margin: 0 0 8px; font-size: 14px; opacity: 0.8;">
@@ -183,7 +180,6 @@
         </div>
         <hr class="smallhr">
 
-
         <div style="margin-top: 12px;">
             <h3 style="margin: 8px 0; color: #a855f7;">Currently enrolled faces:</h3>
             <div class="button-container" style="gap: 6px;">
@@ -193,6 +189,34 @@
         </div>
     </div>
 
+    <div id="identification" class="container mod-section tab-content">
+        <h2>Bot Personalization</h2>
+        <p>Manage bot identity.</p>
+        <hr class="smallhr">
+
+        <div id="identificationStatus" class="identification-status" style="display:none;"></div>
+
+        <div style="margin-top: 10px;">
+            <h3 style="margin: 8px 0; color: #a855f7;">Set robot name</h3>
+            <div class="button-container" style="gap: 6px;">
+                <label id="nameLabel" for="name">Robot Name:</label>
+                <input type="text" placeholder="Vector" id="name">
+                <button id="nameSet" onclick="setName()">Set Bot Name</button>
+            </div>
+        </div>
+        <hr class="smallhr">
+        <div style="margin-top: 10px;">
+            <h3 style="margin: 8px 0; color: #a855f7;">Set robot pronouns</h3>
+            <div class="button-container" style="gap: 6px;">
+                <label id="nameLabel" for="name">Robot Pronouns:</label>
+                <label id="nameLabel" for="name">Format: Pronoun1/Pronoun2/etc</label>
+                <input type="text" placeholder="He/Him" id="pronouns">
+                <button id="nameSet" onclick="setPronouns()">Set Bot Pronouns</button>
+                <button id="nameSet" onclick="setPronounsAll()">Any pronouns</button>
+                <button id="nameSet" onclick="setPronounsDef()">Revert to Default</button>
+            </div>
+        </div>
+    </div>
 
     <div id="showDuringVicRestart" class="container" style="display: none;">
         <h1>Vector is restarting, please wait...</h1>
