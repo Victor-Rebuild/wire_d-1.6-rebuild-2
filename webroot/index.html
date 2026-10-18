@@ -140,26 +140,6 @@
                 <option value="c">Celsius</option>
             </select>
             <button id="timezoneSet" onclick="setTempUnits()">Set Temp Units</button>
-            <hr class="smallhr">
-            <h3 style="margin: 8px 0; color: #a855f7;">Custom Eye Color</h3>
-            <p style="margin: 0 0 8px; font-size: 14px; opacity: 0.8;">
-                Use the wheel to set a custom eye color.
-            </p>
-
-            <div style="display:flex; align-items:center; gap:16px; justify-content:center; flex-wrap:wrap;">
-                <canvas id="eyeColorWheel" width="200" height="200"
-                    style="cursor:crosshair; border-radius:50%; flex-shrink:0;"></canvas>
-                </div>
-            </div>
-
-            <div id="eyeColorStatus"
-                style="min-height:18px; font-size:13px; margin-top:4px;"></div>
-
-            <div style="display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-top:4px;">
-                <button onclick="applyEyeColor()">Apply Custom Eye Color</button>
-                <button onclick="disableEyeColor()"
-                    style="background:#555;">Use non-custom Eye Color</button>
-            </div>
         </div>
     </div>
 
@@ -216,6 +196,24 @@
                 <button id="nameSet" onclick="setPronounsDef()">Revert to Default</button>
             </div>
         </div>
+
+        <hr class="smallhr">
+        <h3 style="margin: 8px 0; color: #a855f7;">Custom Eye Color</h3>
+        <p style="margin: 0 0 8px; font-size: 14px; opacity: 0.8;">
+            Use the wheel to set a custom eye color.
+        </p>
+
+        <div style="display:flex; align-items:center; gap:16px; justify-content:center; flex-wrap:wrap;">
+            <canvas id="eyeColorWheel" width="200" height="200"
+                style="cursor:crosshair; border-radius:50%; flex-shrink:0;"></canvas>
+        </div>
+
+        <div style="margin-top: 10px;">
+            <button onclick="applyEyeColor()">Apply Custom Eye Color</button>
+            <button onclick="disableEyeColor()"
+                style="background:#555;">Use non-custom Eye Color</button>
+        </div>
+
     </div>
 
     <div id="showDuringVicRestart" class="container" style="display: none;">
