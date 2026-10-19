@@ -35,6 +35,8 @@ async function UpdateAllMods() {
     getLocation()
     getTempUnits()
     facesRefresh()
+    getVolume()
+    getEyeColor()
 }
 
-UpdateAllMods();
+document.addEventListener('DOMContentLoaded', UpdateAllMods);
