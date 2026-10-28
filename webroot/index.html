@@ -21,6 +21,7 @@
         <button data-target="#jdocsettings">User Preferences</button>
         <button data-target="#faces">Face Manager</button>
         <button data-target="#identification">Bot Personalization</button>
+        <button data-target="#robotsettings">Robot Settings</button>
     </div>
 
     <div id="home" class="container tab-content active">
@@ -196,24 +197,56 @@
                 <button id="nameSet" onclick="setPronounsDef()">Revert to Default</button>
             </div>
         </div>
+    </div>
 
+    <div id="robotsettings" class="container mod-section tab-content">
+        <h2>Robot Settings</h2>
+        <div id="robotSettingsStatus"></div>
+        <h3 style="margin: 8px 0; color: #a855f7;">Volume</h3>
+        <form>
+                <input type="radio" id="volume0" name="volume" value="0" onchange="setVolume()">
+                <label class="buttonlabel" for="volume0">Mute</label>
+                <input type="radio" id="volume1" name="volume" value="1" onchange="setVolume()">
+                <label class="buttonlabel" for="volume1">Low</label>
+                <input type="radio" id="volume2" name="volume" value="2" onchange="setVolume()">
+                <label class="buttonlabel" for="volume2">Medium Low</label>
+                <input type="radio" id="volume3" name="volume" value="3" onchange="setVolume()">
+                <label class="buttonlabel" for="volume3">Medium</label>
+                <input type="radio" id="volume4" name="volume" value="4" onchange="setVolume()">
+                <label class="buttonlabel" for="volume4">Medium High</label>
+                <input type="radio" id="volume5" name="volume" value="5" onchange="setVolume()">
+                <label class="buttonlabel" for="volume5">High</label>
+        </form>
+        <hr class="smallhr">
+        <h3 style="margin: 8px 0; color: #a855f7;">Preset Eye Colors</h3>
+        <form>
+                <input type="radio" id="eyecolor0" name="eyecolor" value="0" onchange="setEyeColor()">
+                <label class="buttonlabel" for="eyecolor0">Teal</label>
+                <input type="radio" id="eyecolor1" name="eyecolor" value="1" onchange="setEyeColor()">
+                <label class="buttonlabel" for="eyecolor1">Orange</label>
+                <input type="radio" id="eyecolor2" name="eyecolor" value="2" onchange="setEyeColor()">
+                <label class="buttonlabel" for="eyecolor2">Yellow</label>
+                <input type="radio" id="eyecolor3" name="eyecolor" value="3" onchange="setEyeColor()">
+                <label class="buttonlabel" for="eyecolor3">Lime Green</label>
+                <input type="radio" id="eyecolor4" name="eyecolor" value="4" onchange="setEyeColor()">
+                <label class="buttonlabel" for="eyecolor4">Azure Blue</label>
+                <input type="radio" id="eyecolor5" name="eyecolor" value="5" onchange="setEyeColor()">
+                <label class="buttonlabel" for="eyecolor5">Purple</label>
+                <input type="radio" id="eyecolor6" name="eyecolor" value="6" onchange="setEyeColor()">
+                <label class="buttonlabel" for="eyecolor6">Matrix Green</label>
+                <input type="radio" id="eyecolor7" name="eyecolor" value="7" onchange="setEyeColor()">
+                <label class="buttonlabel" for="eyecolor7">Rainbow</label>
+                <input type="radio" id="eyecolor8" name="eyecolor" value="8" onchange="setEyeColor()">
+                <label class="buttonlabel" for="eyecolor8">Rebuild</label>
+                <input type="radio" id="eyecolor9" name="eyecolor" value="9" onchange="setEyeColor()">
+                <label class="buttonlabel" for="eyecolor9">Mystery</label>
+        </form>
         <hr class="smallhr">
         <h3 style="margin: 8px 0; color: #a855f7;">Custom Eye Color</h3>
-        <p style="margin: 0 0 8px; font-size: 14px; opacity: 0.8;">
-            Use the wheel to set a custom eye color.
-        </p>
-
-        <div style="display:flex; align-items:center; gap:16px; justify-content:center; flex-wrap:wrap;">
-            <canvas id="eyeColorWheel" width="200" height="200"
-                style="cursor:crosshair; border-radius:50%; flex-shrink:0;"></canvas>
+        <div class="button-container">
+            <div id="picker"></div>
+            <button id="customEyeColorSet" onclick="setCustomEyeColor()">Set Custom Eye Color</button>
         </div>
-
-        <div style="margin-top: 10px;">
-            <button onclick="applyEyeColor()">Apply Custom Eye Color</button>
-            <button onclick="disableEyeColor()"
-                style="background:#555;">Use non-custom Eye Color</button>
-        </div>
-
     </div>
 
     <div id="showDuringVicRestart" class="container" style="display: none;">
@@ -231,7 +264,8 @@
     <script src="js/jdoc-settings.js"></script>
     <script src="js/faces.js"></script>
     <script src="js/personalization.js"></script>
-    <script src="js/eye-color.js"></script>
+    <script src="js/iro.min.js"></script>
+    <script src="js/more-jdoc-settings.js"></script>
 </body>
 
 </html>

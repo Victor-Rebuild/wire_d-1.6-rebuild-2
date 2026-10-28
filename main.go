@@ -15,7 +15,7 @@ var EnabledMods []vars.Modification = []vars.Modification{
 	mods.NewSensitivityPV(),
 	mods.NewJdocSettings(),
 	mods.NewFaces(),
-	mods.NewEyeColor(),
+	mods.NewMoreJdocSettings(),
 }
 
 func main() {
